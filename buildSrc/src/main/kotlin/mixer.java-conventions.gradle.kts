@@ -1,5 +1,8 @@
 plugins {
     java
+    checkstyle
+    pmd
+    jacoco
 }
 
 group = "it.mixer"
@@ -17,4 +20,29 @@ repositories {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
 }
+
+checkstyle {
+    toolVersion = "10.12.5"
+    configFile = rootProject.file("config/checkstyle/checkstyle.xml")
+    isIgnoreFailures = false
+    maxWarnings = 0
+}
+
+pmd {
+    toolVersion = "6.55.0"
+    isConsoleOutput = true
+    ruleSets = listOf() // clear default rulesets
+    ruleSetFiles = rootProject.files("config/pmd/pmd-ruleset.xml")
+    isIgnoreFailures = false
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
+

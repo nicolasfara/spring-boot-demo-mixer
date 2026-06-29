@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class OpenApiConfig {
 
     @Bean
-    public OpenAPI customOpenAPI(ObjectProvider<BuildProperties> buildProperties) {
+    public OpenAPI customOpenApi(ObjectProvider<BuildProperties> buildProperties) {
         String version = buildProperties.getIfAvailable() != null 
                 ? buildProperties.getIfAvailable().getVersion() 
                 : "dev";

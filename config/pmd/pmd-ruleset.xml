@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Rules"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>
+        Custom ruleset for the Spring Boot Demo Mixer project.
+    </description>
+
+    <!-- Best Practices -->
+    <rule ref="category/java/bestpractices.xml">
+        <!-- We might want to allow some things like using var depending on java version, but generally best practices are good -->
+        <exclude name="GuardLogStatement"/> <!-- Often noisy if logging framework handles it well -->
+        <exclude name="JUnitTestsShouldIncludeAssert"/> <!-- Spring Boot default tests load context and don't assert anything, which is fine -->
+        <exclude name="SystemPrintln"/> <!-- We are OK with it for this demo project -->
+    </rule>
+
+    <!-- Code Style -->
+    <rule ref="category/java/codestyle.xml">
+        <exclude name="AtLeastOneConstructor"/> <!-- Not strictly necessary, especially with Spring -->
+        <exclude name="OnlyOneReturn"/> <!-- Often less readable than multiple returns -->
+        <exclude name="LocalVariableCouldBeFinal"/> <!-- Too noisy for general use -->
+        <exclude name="MethodArgumentCouldBeFinal"/> <!-- Too noisy for general use -->
+        <exclude name="ShortVariable"/> <!-- Can be annoying for counters like 'i' -->
+        <exclude name="LongVariable"/> <!-- Sometimes descriptive names are long -->
+        <exclude name="ShortClassName"/>
+        <exclude name="ShortMethodName"/>
+        <exclude name="CommentDefaultAccessModifier"/> <!-- We don't strictly enforce this comment -->
+    </rule>
+
+    <!-- Design -->
+    <rule ref="category/java/design.xml">
+        <exclude name="LawOfDemeter"/> <!-- Often too strict for typical Spring/DTO data structures -->
+        <exclude name="LoosePackageCoupling"/> <!-- Needs complex setup -->
+        <exclude name="DataClass"/> <!-- DTOs are common in Spring -->
+        <exclude name="SignatureDeclareThrowsException"/> <!-- Spring controllers sometimes throw generic exceptions in simple apps, though specific is better -->
+        <exclude name="UseUtilityClass"/> <!-- Spring Boot main class doesn't need this -->
+    </rule>
+
+    <!-- Error Prone -->
+    <rule ref="category/java/errorprone.xml">
+        <!-- Mostly keep all of these -->
+        <!-- BeanMembersShouldSerialize rule was removed in newer PMD versions, so we don't exclude it here anymore -->
+        <exclude name="ConstructorCallsOverridableMethod"/> <!-- Known issue with Spring repositories / initializations in some patterns -->
+    </rule>
+
+    <!-- Performance -->
+    <rule ref="category/java/performance.xml">
+    </rule>
+
+</ruleset>
