@@ -71,7 +71,8 @@ jobs:
             filename=$(basename "$file" .json)
             tool=$(basename $(dirname "$file"))
             module=$(echo "$file" | cut -d'/' -f2)
-            cp "$file" "sarif-reports/${module}-${tool}-${filename}"
+            category="${module}-${tool}-${filename%.sarif}"
+            jq --arg cat "$category" '.runs |= [to_entries[] | .value + {automationDetails: {id: ($cat + "-" + (.key|tostring))}}]' "$file" > "sarif-reports/${module}-${tool}-${filename}"
         done
 
     - name: Upload SARIF to GitHub Code Scanning
