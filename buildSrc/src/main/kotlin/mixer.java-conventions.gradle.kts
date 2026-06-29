@@ -30,12 +30,24 @@ checkstyle {
     maxWarnings = 0
 }
 
+tasks.withType<Checkstyle> {
+    reports {
+        sarif.required.set(true)
+    }
+}
+
 pmd {
     toolVersion = "6.55.0"
     isConsoleOutput = true
     ruleSets = listOf() // clear default rulesets
     ruleSetFiles = rootProject.files("config/pmd/pmd-ruleset.xml")
     isIgnoreFailures = false
+}
+
+tasks.withType<Pmd> {
+    reports {
+        sarif.required.set(true)
+    }
 }
 
 tasks.jacocoTestReport {
