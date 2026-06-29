@@ -1,0 +1,12 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: service-one
+  profiles:
+    active: local # | prod
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

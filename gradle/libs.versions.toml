@@ -1,0 +1,14 @@
+[versions]
+spring-boot = "4.0.7"
+springdoc = "3.0.2"
+
+[libraries]
+spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+reactor-test = { module = "io.projectreactor:reactor-test" }
+springdoc = { module = "org.springdoc:springdoc-openapi-starter-webflux-ui", version.ref = "springdoc" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
