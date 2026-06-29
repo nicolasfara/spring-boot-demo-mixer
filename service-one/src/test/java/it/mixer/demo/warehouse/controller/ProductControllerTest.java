@@ -13,7 +13,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @WebFluxTest(controllers = ProductController.class)
@@ -27,9 +26,11 @@ class ProductControllerTest {
 
     private final Product sampleProduct1 = new Product("1", "SKU-001", "Widget A", 10, "A1");
     private final Product sampleProduct2 = new Product("2", "SKU-002", "Widget B", 20, "B2");
+    
+    private static final String UPDATED_WIDGET_NAME = "Updated Widget";
 
     @Test
-    void getAllProducts() {
+    void findAllProducts() {
         when(productRepository.findAll()).thenReturn(Flux.just(sampleProduct1, sampleProduct2));
 
         webClient.get()
@@ -42,7 +43,7 @@ class ProductControllerTest {
     }
 
     @Test
-    void getProductById_Success() {
+    void findProductByIdSuccess() {
         when(productRepository.findById("1")).thenReturn(Mono.just(sampleProduct1));
 
         webClient.get()
@@ -55,7 +56,7 @@ class ProductControllerTest {
     }
 
     @Test
-    void getProductById_NotFound() {
+    void findProductByIdNotFound() {
         when(productRepository.findById("999")).thenReturn(Mono.empty());
 
         webClient.get()
@@ -83,9 +84,9 @@ class ProductControllerTest {
     }
 
     @Test
-    void updateProduct_Success() {
-        Product updatedInfo = new Product(null, "SKU-UPDATED", "Updated Widget", 15, "A1");
-        Product updatedProduct = new Product("1", "SKU-UPDATED", "Updated Widget", 15, "A1");
+    void updateProductSuccess() {
+        Product updatedInfo = new Product(null, "SKU-UPDATED", UPDATED_WIDGET_NAME, 15, "A1");
+        Product updatedProduct = new Product("1", "SKU-UPDATED", UPDATED_WIDGET_NAME, 15, "A1");
 
         when(productRepository.findById("1")).thenReturn(Mono.just(sampleProduct1));
         when(productRepository.save(any(Product.class))).thenReturn(Mono.just(updatedProduct));
@@ -97,13 +98,13 @@ class ProductControllerTest {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
-                .jsonPath("$.name").isEqualTo("Updated Widget")
+                .jsonPath("$.name").isEqualTo(UPDATED_WIDGET_NAME)
                 .jsonPath("$.quantity").isEqualTo(15);
     }
 
     @Test
-    void updateProduct_NotFound() {
-        Product updatedInfo = new Product(null, "SKU-UPDATED", "Updated Widget", 15, "A1");
+    void updateProductNotFound() {
+        Product updatedInfo = new Product(null, "SKU-UPDATED", UPDATED_WIDGET_NAME, 15, "A1");
 
         when(productRepository.findById("999")).thenReturn(Mono.empty());
 
