@@ -47,7 +47,7 @@ public class ProductController {
             summary = "Get a product by ID",
             description = "Retrieves details of a specific product based on its unique ID."
     )
-    @ApiResponses(value = {
+    @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Product found"),
         @ApiResponse(responseCode = "404", description = "Product not found", content = @Content)
     })
@@ -65,7 +65,7 @@ public class ProductController {
             summary = "Add a new product",
             description = "Creates a new product record in the inventory. The ID will be auto-generated."
     )
-    @ApiResponses(value = {
+    @ApiResponses({
         @ApiResponse(responseCode = "201", description = "Product successfully created")
     })
     public Mono<Product> createProduct(
@@ -79,7 +79,7 @@ public class ProductController {
             summary = "Update an existing product",
             description = "Updates the details of an existing product based on its ID."
     )
-    @ApiResponses(value = {
+    @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Product successfully updated"),
         @ApiResponse(responseCode = "404", description = "Product not found", content = @Content)
     })

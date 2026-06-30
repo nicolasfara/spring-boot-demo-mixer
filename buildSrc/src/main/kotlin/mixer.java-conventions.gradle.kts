@@ -10,7 +10,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(26))
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
 
@@ -37,7 +37,7 @@ tasks.withType<Checkstyle> {
 }
 
 pmd {
-    toolVersion = "6.55.0"
+    toolVersion = "7.13.0"
     isConsoleOutput = true
     ruleSets = listOf() // clear default rulesets
     ruleSetFiles = rootProject.files("config/pmd/pmd-ruleset.xml")

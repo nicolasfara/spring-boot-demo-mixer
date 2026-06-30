@@ -15,8 +15,10 @@ import reactor.core.publisher.Mono;
 @Profile("prod")
 public class ProductionProductRepository implements ProductRepository {
 
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(ProductionProductRepository.class);
+
     public ProductionProductRepository() {
-        System.out.println("Connecting to Production Database...");
+        LOGGER.info("Connecting to Production Database...");
     }
 
     @Override

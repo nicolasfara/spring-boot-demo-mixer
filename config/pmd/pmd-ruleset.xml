@@ -12,8 +12,9 @@
     <rule ref="category/java/bestpractices.xml">
         <!-- We might want to allow some things like using var depending on java version, but generally best practices are good -->
         <exclude name="GuardLogStatement"/> <!-- Often noisy if logging framework handles it well -->
-        <exclude name="JUnitTestsShouldIncludeAssert"/> <!-- Spring Boot default tests load context and don't assert anything, which is fine -->
-        <exclude name="SystemPrintln"/> <!-- We are OK with it for this demo project -->
+        <exclude name="UnitTestShouldIncludeAssert"/> <!-- PMD 7 renamed this rule. Spring Boot default tests load context and don't assert anything, which is fine -->
+        <exclude name="UnitTestContainsTooManyAsserts"/> <!-- Too restrictive for integration tests -->
+        <exclude name="LiteralsFirstInComparisons"/> <!-- We don't enforce this for readability -->
     </rule>
 
     <!-- Code Style -->
@@ -27,6 +28,7 @@
         <exclude name="ShortClassName"/>
         <exclude name="ShortMethodName"/>
         <exclude name="CommentDefaultAccessModifier"/> <!-- We don't strictly enforce this comment -->
+        <exclude name="UseShortArrayInitializer"/> <!-- Minor formatting choice -->
     </rule>
 
     <!-- Design -->
@@ -34,7 +36,6 @@
         <exclude name="LawOfDemeter"/> <!-- Often too strict for typical Spring/DTO data structures -->
         <exclude name="LoosePackageCoupling"/> <!-- Needs complex setup -->
         <exclude name="DataClass"/> <!-- DTOs are common in Spring -->
-        <exclude name="SignatureDeclareThrowsException"/> <!-- Spring controllers sometimes throw generic exceptions in simple apps, though specific is better -->
         <exclude name="UseUtilityClass"/> <!-- Spring Boot main class doesn't need this -->
     </rule>
 
