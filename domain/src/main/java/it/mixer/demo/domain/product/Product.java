@@ -1,4 +1,4 @@
-package it.mixer.demo.warehouse.model;
+package it.mixer.demo.domain.product;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

@@ -1,6 +1,6 @@
-package it.mixer.demo.warehouse.repository;
+package it.mixer.demo.domain.repository;
 
-import it.mixer.demo.warehouse.model.Product;
+import it.mixer.demo.domain.product.Product;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

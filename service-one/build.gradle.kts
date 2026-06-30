@@ -9,15 +9,14 @@ springBoot {
 }
 
 dependencies {
+    implementation(project(":domain"))
     implementation(platform(libs.spring.boot.dependencies))
-
-    implementation(libs.spring.boot.starter.webflux)
+    implementation(libs.bundles.spring.boot.core)
     implementation(libs.springdoc)
     
-    testImplementation(platform(libs.spring.boot.dependencies))
-    testImplementation(libs.spring.boot.starter.test)
-    testImplementation("org.mockito:mockito-core")
-    testImplementation("org.springframework.boot:spring-boot-webflux-test")
+    testImplementation(libs.bundles.spring.boot.test)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.spring.boot.webflux.test)
     testImplementation(libs.reactor.test)
     testRuntimeOnly(libs.junit.platform.launcher)
 }

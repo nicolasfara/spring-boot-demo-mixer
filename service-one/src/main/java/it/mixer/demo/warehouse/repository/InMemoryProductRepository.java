@@ -1,6 +1,7 @@
 package it.mixer.demo.warehouse.repository;
 
-import it.mixer.demo.warehouse.model.Product;
+import it.mixer.demo.domain.product.Product;
+import it.mixer.demo.domain.repository.ProductRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;

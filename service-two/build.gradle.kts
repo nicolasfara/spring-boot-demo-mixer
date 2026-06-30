@@ -4,10 +4,13 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":domain"))
     implementation(platform(libs.spring.boot.dependencies))
-
-    implementation(libs.spring.boot.starter.webflux)
+    implementation(libs.bundles.spring.boot.core)
     
-    testImplementation(libs.spring.boot.starter.test)
+    testImplementation(libs.bundles.spring.boot.test)
     testRuntimeOnly(libs.junit.platform.launcher)
 }
+
+
+

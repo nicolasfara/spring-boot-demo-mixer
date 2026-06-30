@@ -1,7 +1,7 @@
 package it.mixer.demo.warehouse.controller;
 
-import it.mixer.demo.warehouse.model.Product;
-import it.mixer.demo.warehouse.repository.ProductRepository;
+import it.mixer.demo.domain.product.Product;
+import it.mixer.demo.domain.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

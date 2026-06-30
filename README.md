@@ -6,7 +6,7 @@ This monorepo contains Spring Boot microservices, utilizing Gradle for build aut
 
 To execute the microservices locally, please follow these instructions:
 
-1. **Prerequisites**: Ensure Java 17 is installed. Manual installation of Gradle is not required; the provided Gradle wrapper (`./gradlew`) will manage the build environment.
+1. **Prerequisites**: Ensure Java 26 is installed. Manual installation of Gradle is not required; the provided Gradle wrapper (`./gradlew`) will manage the build environment.
 2. **Build the project**: 
    ```bash
    ./gradlew build
@@ -55,7 +55,7 @@ Dependencies are centrally governed using a Gradle Version Catalog, located at `
 
 - When declaring a dependency within a microservice, utilize the `libs.*` syntax (e.g., `implementation(libs.spring.boot.starter.webflux)`).
 - This practice guarantees version consistency and mitigates dependency conflicts across discrete microservices.
-- Foundational Java configurations (such as Java 17 compliance and Maven Central repository declarations) are centrally administered via the `mixer.java-conventions` plugin situated in the `buildSrc` directory.
+- Foundational Java configurations (such as Java 26 compliance and Maven Central repository declarations) are centrally administered via the `mixer.java-conventions` plugin situated in the `buildSrc` directory.
 
 ## Quality Assurance Tools
 
